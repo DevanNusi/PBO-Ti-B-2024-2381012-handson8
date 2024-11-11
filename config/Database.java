@@ -1,9 +1,6 @@
 package config;
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 
 public class Database {
@@ -14,7 +11,7 @@ public class Database {
     private final String port;
     private Connection connection;
 
-    public Database(String dbName, String userName, String password, String host, String port) {
+    public Database(final String dbName, final String userName, final String password, final String host, final String port) {
         this.dbName = dbName;
         this.userName = userName;
         this.password = password;
@@ -26,13 +23,13 @@ public class Database {
         return connection;
     }
 
-    public void setup(){
-        String mySwlConnUrlTemplate = "jdbc:mysql://%s:%s/%s";
+    public void setup() {
+        String mySqlConnUrlTemplate = "jdbc:mysql://%s:%s/%s";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(String.format(mySwlConnUrlTemplate, host, port, dbName), userName, password);
-            System.out.println("Database is connected !");
-        } catch (SQLException | ClassNotFoundException e) {
+            connection = DriverManager.getConnection(String.format(mySqlConnUrlTemplate, host, port, dbName), userName, password);
+            System.out.println("Database connected !");
+        } catch (SQLException | ClassNotFoundException e){
             throw new RuntimeException(e);
         }
     }

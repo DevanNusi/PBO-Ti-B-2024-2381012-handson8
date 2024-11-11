@@ -1,17 +1,18 @@
-package repository;
+package repositories;
 
 import entities.TodoList;
 
-public class TodoListRepositoryImpl implements  TodoListRepository {
-    public static TodoList[] todos = new TodoList[10];
+public class TodoListRepositoryImpl implements TodoListRepository {
+    public static  TodoList[] todos = new TodoList[10];
+
 
     @Override
-    public TodoList[] getALL() {
+    public TodoList[] getAll() {
         return todos;
     }
 
     @Override
-    public void add(final TodoList todoList) {
+    public void add(TodoList todoList) {
         resizeArrayIfFull();
 
         // add todo to array that has null element
@@ -53,8 +54,9 @@ public class TodoListRepositoryImpl implements  TodoListRepository {
     }
 
 
+
     @Override
-    public Boolean remove( final Integer number) {
+    public Boolean remove(Integer number) {
         if (isSelectedTodoNotValid(number)) {
             return false;
         }
@@ -95,7 +97,5 @@ public class TodoListRepositoryImpl implements  TodoListRepository {
             return false;
         }
         todos[todoList.getId() - 1] = todoList;
-        return true;
-    }
-
+        return true;  }
 }
